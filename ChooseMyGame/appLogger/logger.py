@@ -6,7 +6,10 @@ class _LogGenerator():
 
     - Uses built-in Python `logging` module.
 
+    ---
+
     - Class methods:
+
         - :func:`debug(self, msg) -> None`
             - Logs a message with level `DEBUG`.
 
@@ -70,18 +73,20 @@ class _LogGenerator():
         :rtype: None
         """
 
-        self.name = name
-        self.logger = logging.getLogger(name)
-        self.log_format = log_format
-        self.datefmt = datefmt
-        self.level = level
-        self.formatter = logging.Formatter(log_format, datefmt=datefmt)
-        self.log_file = log_file
-        self.fhandler = logging.FileHandler(log_file)
-        self.logger.addHandler(self.fhandler)
-        self.fhandler.setFormatter(self.formatter)
-        self.logger.setLevel(level)
-        self.stream = stream
+        self.name = name  # Name of logger.
+        self.logger = logging.getLogger(name)  # Get logger instance.
+        self.log_format = log_format  # Log msg format.
+        self.datefmt = datefmt  # Date format.
+        self.level = level  # Default log level.
+        self.formatter = logging.Formatter(log_format,
+                                           datefmt=datefmt)  # Log formatter.
+        self.log_file = log_file  # File to write logs to.
+        self.fhandler = logging.FileHandler(log_file)  # Log file handler.
+        self.logger.addHandler(self.fhandler)  # Add file handler to logger.
+        self.fhandler.setFormatter(
+            self.formatter)  # Set formatter to file handler.
+        self.logger.setLevel(level)  # Set level of logger.
+        self.stream = stream  # Toggle streaming to stdout.
 
         if stream:  # if stream is True, then set logging stream to stdout
             self.logger.addHandler(logging.StreamHandler())
@@ -96,6 +101,7 @@ class _LogGenerator():
         :return: creates log entry.
         :rtype: None
         """
+
         return self.logger.debug(msg)
 
     def info(self, msg):
@@ -108,6 +114,7 @@ class _LogGenerator():
         :return: creates log entry.
         :rtype: None
         """
+
         return self.logger.info(msg)
 
     def warning(self, msg):
@@ -120,6 +127,7 @@ class _LogGenerator():
         :return: creates log entry.
         :rtype: None
         """
+
         return self.logger.warning(msg)
 
     def error(self, msg):
@@ -132,6 +140,7 @@ class _LogGenerator():
         :return: creates log entry.
         :rtype: None
         """
+
         return self.logger.error(msg)
 
     def critical(self, msg):
@@ -144,6 +153,7 @@ class _LogGenerator():
         :return: creates log entry.
         :rtype: None
         """
+
         return self.logger.critical(msg)
 
 

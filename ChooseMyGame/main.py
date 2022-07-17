@@ -22,6 +22,8 @@ def activate_GUI() -> None:
     while True:
         event, values = window.read()  # Read GUI event.
 
+        logger.info(f'{event} {values}')
+
         print(event, values)  # Enable for easier debugging
 
         if event in [sg.WIN_CLOSED, sg.WIN_X_EVENT, 'Exit']:
